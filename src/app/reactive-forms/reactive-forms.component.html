@@ -1,0 +1,88 @@
+
+
+<table [formGroup]="userGroup">
+  <tr>
+    <td><label for="bookId">BookId</label></td>
+    <td>
+      <input id="bookId" formControlName="bookId" />
+      <div *ngIf="userGroup.controls['bookId'].errors">
+        <div *ngIf="userGroup.controls['bookId'].errors['required']">BookId is required.</div>
+        <div *ngIf="userGroup.controls['bookId'].errors['notUnique']">BookId must be unique.</div>
+      </div>
+    </td>
+  </tr>
+
+    <!-- <tr>
+      <td><label for="bookId">BookId</label></td>
+      <td><input  id="bookId" formControlName="bookId" /></td>
+    </tr>
+    <tr> -->
+    
+    <tr>
+      <td><label for="title">Title</label></td>
+
+      <div>
+       
+        <input id="title" formControlName="title">
+        <div *ngIf="userGroup.controls['title'].errors">
+        <div *ngIf="userGroup.controls['title'].errors['required']">Title is required   </div>
+        </div>
+      </div>
+       
+    </tr>
+    <tr>
+      <td> <label for="author">Author</label></td>
+      <div>
+       
+        <input type="text" id="author" formControlName="author">
+        <div *ngIf="userGroup.controls['author'].errors">
+        <div *ngIf="userGroup.controls['author'].errors['required']">author is required   </div>
+        <div *ngIf="userGroup.controls['author'].errors['pattern']">Invalid author format (only letters and spaces allowed)</div>
+        </div>
+       </div>
+    
+    </tr>
+    <tr>
+        <td><label for="genre">Genre</label></td>
+        <div>
+          <input id="genre" formControlName="genre">
+          <div *ngIf="userGroup.controls['genre'].errors">
+          <div *ngIf="userGroup.controls['genre'].errors['required']">Genre is required   </div>
+          </div>
+        </div>
+    </tr>
+    <tr>
+        <td><label for="numberOfCopies">Number Of Copies</label></td>
+        <div>
+          <input type="number" id="numberOfCopies" formControlName="numberOfCopies">
+          <div *ngIf="userGroup.controls['numberOfCopies'].errors">
+          <div *ngIf="userGroup.controls['numberOfCopies'].errors['required']">Number of copies required</div>
+          <div *ngIf="userGroup.controls['numberOfCopies'].errors['pattern']">Number of copies must be non negative</div>
+          <div *ngIf="userGroup.controls['numberOfCopies'].errors['nonNegativeIntegerValidator']">Number of copies must be a non negative value</div>
+          </div>
+        </div>
+    </tr>
+    <tr>
+        <td><label>Publisher</label></td>
+        <td><input type="text" formControlName="publisher" /></td>
+    </tr>
+    <tr>
+        <td><label for="publicationYear">Publication Year</label></td>
+        <div>
+            <input type="number" id="publicationYear" formControlName="publicationYear">
+          <div *ngIf="userGroup.controls['publicationYear'].errors">
+          <div *ngIf="userGroup.controls['publicationYear'].errors['required']">publicationYear required  </div>
+          <div *ngIf="userGroup.controls['publicationYear'].errors['min']">publicationYear must be greater than 1900  </div>
+          <div *ngIf="userGroup.controls['publicationYear'].errors['max']">publicationYear must be lesser than 2024  </div>
+          </div>
+        </div>
+        
+    </tr>
+
+</table>
+
+
+  <button (click)="onSubmit()">Submit</button>
+<br>
+  <button (click)="onClick()">Back To List</button>
+  <!-- <p>Value:- {{first_Name.value}}</p> -->

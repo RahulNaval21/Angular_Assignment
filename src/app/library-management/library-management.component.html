@@ -1,0 +1,110 @@
+<h2>Book Data</h2>
+
+<!-- <p>library-management w!</p>
+
+<div>
+    <button (click)="getAllData()">Get All Book</button>
+</div>
+
+
+<div>
+    <button (click)="addData()">Add a book</button>
+</div>
+
+
+<table border="1">
+    <tr>
+        <th>BookId</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Genre</th>
+        <th>NumberOfCopies</th>
+        <th>Publisher</th>
+        <th>PublicationYear</th>
+    </tr>
+
+    <tr *ngFor="let book of books">
+        <td>{{book.bookId}}</td>
+        <td>{{book.bookId}}</td>
+        <td>{{book.bookId}}</td>
+        <td>{{book.bookId}}</td>
+        <td>{{book.bookId}}</td>
+        <td>{{book.bookId}}</td>
+        <td>{{book.bookId}}</td>
+    </tr>
+
+</table> -->
+
+
+<div>
+    <button (click)="getAllData(); showBookForm=true">Get All Book</button>
+</div>
+
+<div>
+    <button (click)="addData()">Add a book</button>
+</div>
+
+
+<table  border="1" *ngIf="showBookForm">
+    <tr>
+        <th>BookId</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Genre</th>
+        <th>NumberOfCopies</th>
+        <th>Publisher</th>
+        <th>PublicationYear</th>
+        <th>View</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    
+
+
+
+    <tr *ngFor="let book of Books">
+        <td>{{book.bookId}}</td>
+        <td>{{book.title}}</td>
+        <td>{{book.author}}</td>
+        <td>{{book.genre}}</td>
+        <td>{{book.numberOfCopies}}</td>
+        <td>{{book.publisher}}</td>
+        <td>{{book.publicationYear}}</td>
+
+        <!-- <td><button (click)="onView(book.id)">View</button></td> -->
+
+        <td><a [routerLink]="['/library-management', book.id]">View</a></td>
+
+        <td><button (click)="onEdit(book)">Edit</button></td>
+        <td><button (click)="dltData(book.id)">Delete</button></td>
+    </tr>
+</table>
+
+
+<div *ngIf="showEditForm">
+    <h3>Edit Book</h3>
+    <form [formGroup]="editingBookForm" (ngSubmit)="saveChanges()">
+      
+        <label for="title">Title:</label>
+      <input id="title" formControlName="title">
+      
+      
+      <label for="author">Author:</label>
+      <input id="author" formControlName="author">
+      
+      <label for="genre">Genre:</label>
+      <input id="genre" formControlName="genre">
+      
+      <label for="numberOfCopies">Number of Copies:</label>
+      <input id="numberOfCopies" type="number" formControlName="numberOfCopies">
+      
+      <label for="publisher">Publisher:</label>
+      <input id="publisher" formControlName="publisher">
+      
+      <label for="publicationYear">Publication Year:</label>
+      <input id="publicationYear" type="number" formControlName="publicationYear">
+      
+      <button type="submit" >Save Changes</button>
+      <button type="button" (click)="editingBookForm.reset(); showEditForm=false; " >Cancel</button>
+    </form>
+  </div>
